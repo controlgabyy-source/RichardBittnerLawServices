@@ -1,0 +1,292 @@
+document.addEventListener('DOMContentLoaded', () => {
+  const navToggle = document.querySelector('.nav-toggle');
+  const mainNav = document.querySelector('.main-nav');
+
+  if (navToggle && mainNav) {
+    navToggle.addEventListener('click', () => {
+      const expanded = navToggle.getAttribute('aria-expanded') === 'true';
+      navToggle.setAttribute('aria-expanded', String(!expanded));
+      mainNav.classList.toggle('is-open');
+    });
+  }
+
+  const translations = {
+    en: {
+      'page.title': 'Law Office of Richard C. Bittner | Glen Burnie Attorney',
+      'meta.description': 'Experienced Maryland attorney proudly serving English and Spanish-speaking clients. Family law, criminal defense, personal injury, estate planning and more.',
+      'skip-link': 'Skip to Content',
+      'nav.home': 'Home',
+      'nav.about': 'About',
+      'nav.practice': 'Practice Areas',
+      'nav.reviews': 'Reviews',
+      'nav.faq': 'FAQ',
+      'nav.contact': 'Contact',
+      'nav.portal': 'Client Portal',
+      'header.call-now': 'Call Now',
+      'hero.badge': '⭐ Rated 4.4 on Google',
+      'hero.title': 'Trusted Legal Representation\n\nfor Maryland Families',
+      'hero.lede': 'Whether you\'re navigating a difficult legal issue or simply need trusted advice, our office is committed to providing honest representation with personalized attention. We proudly serve both English and Spanish-speaking clients throughout Maryland.',
+      'hero.primary-btn': '📞 Call to Schedule an Appointment',
+      'hero.secondary-btn': 'Secure Client Portal',
+      'hero.stat-reviews': 'Google Reviews',
+      'hero.stat-rating': 'Average Rating',
+      'hero.stat-bilingual': 'Bilingual Assistance',
+      'quick.visit-title': 'Visit Our Office',
+      'quick.visit-copy': '7 Central Ave Suite A\n\nGlen Burnie, MD 21061',
+      'quick.visit-btn': 'Directions',
+      'quick.call-title': 'Call Us',
+      'quick.call-copy': 'Speak directly with our office to schedule a consultation or ask questions.',
+      'quick.portal-title': 'Secure Client Portal',
+      'quick.portal-copy': 'Upload documents, communicate with our office, and access your case information through our client portal.',
+      'quick.portal-btn': 'Open Portal',
+      'about.eyebrow': 'About Richard',
+      'about.title': 'A Trusted Advocate for Maryland Families',
+      'about.lede': 'The Law Office of Richard C. Bittner is committed to providing practical legal guidance with honesty, compassion, and respect. Every client deserves to feel heard and informed throughout the legal process.',
+      'about.name': 'Richard C. Bittner',
+      'about.paragraph1': 'Richard C. Bittner earned his Juris Doctor from the University of Baltimore School of Law and has dedicated his career to helping Maryland residents navigate difficult legal matters with integrity, professionalism, and personal attention.',
+      'about.paragraph2': 'Whether assisting individuals, families, or businesses, Richard believes every client deserves clear communication, thoughtful strategy, and compassionate representation.',
+      'about.paragraph3': 'Outside the office, Richard enjoys spending time fishing, reflecting his patient and approachable personality.',
+      'about.credential1': '✔ University of Baltimore School of Law (J.D.)',
+      'about.credential2': '✔ Proudly Serving Maryland',
+      'about.credential3': '✔ English & Spanish Assistance Available',
+      'about.credential4': '✔ Personalized Legal Representation',
+      'practice.eyebrow': 'Practice Areas',
+      'practice.title': 'Legal Services Tailored to Your Needs',
+      'practice.lede': 'Our office provides practical legal representation across a variety of practice areas while treating every client with respect and dignity.',
+      'practice.family-title': 'Family Law',
+      'practice.family-copy': 'Divorce, custody, visitation, child support, and family matters.',
+      'practice.criminal-title': 'Criminal Defense',
+      'practice.criminal-copy': 'Experienced legal representation for misdemeanor and felony charges.',
+      'practice.traffic-title': 'Traffic Matters',
+      'practice.traffic-copy': 'Traffic citations, license issues, DUI/DWI defense and related cases.',
+      'practice.injury-title': 'Personal Injury',
+      'practice.injury-copy': 'Helping injured clients pursue fair compensation after accidents.',
+      'practice.estate-title': 'Estate Planning',
+      'practice.estate-copy': 'Wills, powers of attorney, and planning for your family\'s future.',
+      'practice.business-title': 'Business Law',
+      'practice.business-copy': 'Business formation, contracts, and legal guidance.',
+      'practice.civil-title': 'Civil Litigation',
+      'practice.civil-copy': 'Professional advocacy for civil disputes inside and outside the courtroom.',
+      'practice.general-title': 'General Legal Services',
+      'practice.general-copy': 'Personalized legal guidance for a wide range of legal concerns.',
+      'practice.learn-more': 'Learn More',
+      'practice.schedule-consultation': 'Schedule Consultation',
+      'reviews.eyebrow': 'Client Reviews',
+      'reviews.title': 'Trusted by Hundreds of Maryland Clients',
+      'reviews.summary': 'Based on over <strong>416 Google Reviews</strong>',
+      'faq.eyebrow': 'Frequently Asked Questions',
+      'faq.title': 'We\'re Here to Help',
+      'faq.lede': 'Answers to some of the questions we receive most often.',
+      'faq.q1': 'Do you offer consultations?',
+      'faq.a1': 'Yes. Please call our office to schedule an appointment with an attorney.',
+      'faq.q2': 'Do you speak Spanish?',
+      'faq.a2': 'Yes. We proudly assist both English and Spanish-speaking clients.',
+      'faq.q3': 'How can I send my legal documents?',
+      'faq.a3': 'Existing clients may upload documents through the secure client portal or bring them to our office.',
+      'contact.eyebrow': 'Contact',
+      'contact.title': 'Schedule a Consultation',
+      'contact.lede': 'Whether you\'re facing a legal issue or simply have questions, our office is here to help.',
+      'contact.address-title': '📍 Office Address',
+      'contact.phone-title': '📞 Phone',
+      'contact.hours-title': '🕒 Office Hours',
+      'contact.form-name': 'Name',
+      'contact.form-phone': 'Phone',
+      'contact.form-email': 'Email',
+      'contact.form-language': 'Preferred Language',
+      'contact.form-matter': 'Legal Matter',
+      'contact.form-message': 'Message',
+      'contact.form-submit': 'Request Consultation',
+      'footer.practice-title': 'Practice Areas',
+      'footer.office-title': 'Office',
+      'footer.links-title': 'Quick Links',
+      'footer.intro': 'Providing trusted legal representation to Maryland families with honesty, professionalism, and compassion.',
+      'footer.practice-family': 'Family Law',
+      'footer.practice-criminal': 'Criminal Defense',
+      'footer.practice-estate': 'Estate Planning',
+      'footer.practice-business': 'Business Law',
+      'footer.address-line1': '7 Central Ave Suite A',
+      'footer.address-line2': 'Glen Burnie, MD',
+      'footer.phone': '(410) 590-2552',
+      'footer.link-about': 'About',
+      'footer.link-practice': 'Practice Areas',
+      'footer.link-portal': 'Client Portal',
+      'footer.link-contact': 'Contact',
+      'footer.copyright': '© 2026 Law Office of Richard C. Bittner. All Rights Reserved.',
+      'footer.disclaimer': 'Attorney Advertising • Prior results do not guarantee a similar outcome.',
+      'hours.monday': 'Monday',
+      'hours.monday-hours': '9:00 AM – 5:00 PM',
+      'hours.tuesday': 'Tuesday',
+      'hours.tuesday-hours': '9:00 AM – 5:00 PM',
+      'hours.wednesday': 'Wednesday',
+      'hours.wednesday-hours': '9:00 AM – 5:00 PM',
+      'hours.thursday': 'Thursday',
+      'hours.thursday-hours': '9:00 AM – 5:00 PM',
+      'hours.friday': 'Friday',
+      'hours.friday-hours': '9:00 AM – 4:00 PM',
+      'hours.saturday': 'Saturday',
+      'hours.saturday-hours': 'Closed',
+      'hours.sunday': 'Sunday',
+      'hours.sunday-hours': 'Closed',
+      'form.option-english': 'English',
+      'form.option-spanish': 'Español',
+      'brand.name': 'Richard C. Bittner',
+      'brand.title': 'Attorney at Law'
+    },
+    es: {
+      'skip-link': 'Saltar al contenido',
+      'nav.home': 'Inicio',
+      'nav.about': 'Sobre nosotros',
+      'nav.practice': 'Áreas de práctica',
+      'nav.reviews': 'Opiniones',
+      'nav.faq': 'Preguntas frecuentes',
+      'nav.contact': 'Contacto',
+      'nav.portal': 'Portal del cliente',
+      'header.call-now': 'Llámenos',
+      'hero.badge': '⭐ Calificado 4.4 en Google',
+      'hero.title': 'Representación legal de confianza\n\npara las familias de Maryland',
+      'hero.lede': 'Ya sea que esté enfrentando un problema legal difícil o simplemente necesite asesoría confiable, nuestra oficina se compromete a brindar una representación honesta con atención personalizada. Con gusto atendemos a clientes que hablan inglés y español en todo Maryland.',
+      'hero.primary-btn': '📞 Llame para programar una cita',
+      'hero.secondary-btn': 'Portal seguro del cliente',
+      'hero.stat-reviews': 'Opiniones de Google',
+      'hero.stat-rating': 'Calificación promedio',
+      'hero.stat-bilingual': 'Asistencia bilingüe',
+      'quick.visit-title': 'Visite nuestra oficina',
+      'quick.visit-copy': '7 Central Ave Suite A\n\nGlen Burnie, MD 21061',
+      'quick.visit-btn': 'Cómo llegar',
+      'quick.call-title': 'Llámenos',
+      'quick.call-copy': 'Hable directamente con nuestra oficina para programar una consulta o hacer preguntas.',
+      'quick.portal-title': 'Portal seguro del cliente',
+      'quick.portal-copy': 'Suba documentos, comuníquese con nuestra oficina y acceda a la información de su caso a través de nuestro portal del cliente.',
+      'quick.portal-btn': 'Abrir portal',
+      'about.eyebrow': 'Sobre Richard',
+      'about.title': 'Un defensor de confianza para las familias de Maryland',
+      'about.lede': 'La Oficina de Richard C. Bittner se compromete a ofrecer orientación legal práctica con honestidad, compasión y respeto. Cada cliente merece ser escuchado e informado durante todo el proceso legal.',
+      'about.name': 'Richard C. Bittner',
+      'about.paragraph1': 'Richard C. Bittner obtuvo su Juris Doctor en la University of Baltimore School of Law y ha dedicado su carrera a ayudar a residentes de Maryland a enfrentar asuntos legales difíciles con integridad, profesionalismo y atención personal.',
+      'about.paragraph2': 'Ya sea que ayude a personas, familias o negocios, Richard cree que cada cliente merece una comunicación clara, una estrategia cuidadosa y una representación compasiva.',
+      'about.paragraph3': 'Fuera de la oficina, Richard disfruta pasar tiempo pescando, lo que refleja su personalidad paciente y accesible.',
+      'about.credential1': '✔ University of Baltimore School of Law (J.D.)',
+      'about.credential2': '✔ Con orgullo atendemos a Maryland',
+      'about.credential3': '✔ Asistencia en inglés y español disponible',
+      'about.credential4': '✔ Representación legal personalizada',
+      'practice.eyebrow': 'Áreas de práctica',
+      'practice.title': 'Servicios legales adaptados a sus necesidades',
+      'practice.lede': 'Nuestra oficina ofrece representación legal práctica en diversas áreas de práctica y trata a cada cliente con respeto y dignidad.',
+      'practice.family-title': 'Derecho de familia',
+      'practice.family-copy': 'Divorcio, custodia, visita, manutención de hijos y asuntos familiares.',
+      'practice.criminal-title': 'Defensa penal',
+      'practice.criminal-copy': 'Representación legal experta para cargos menores y delitos graves.',
+      'practice.traffic-title': 'Asuntos de tránsito',
+      'practice.traffic-copy': 'Citas de tráfico, problemas de licencia, defensa por DUI/DWI y casos relacionados.',
+      'practice.injury-title': 'Lesiones personales',
+      'practice.injury-copy': 'Ayudamos a los clientes lesionados a buscar una compensación justa después de accidentes.',
+      'practice.estate-title': 'Planificación patrimonial',
+      'practice.estate-copy': 'Testamentos, poderes legales y planificación para el futuro de su familia.',
+      'practice.business-title': 'Derecho empresarial',
+      'practice.business-copy': 'Formación de empresas, contratos y orientación legal.',
+      'practice.civil-title': 'Litigio civil',
+      'practice.civil-copy': 'Defensa profesional para disputas civiles dentro y fuera del tribunal.',
+      'practice.general-title': 'Servicios legales generales',
+      'practice.general-copy': 'Orientación legal personalizada para una amplia variedad de asuntos legales.',
+      'practice.learn-more': 'Más información',
+      'practice.schedule-consultation': 'Programar consulta',
+      'reviews.eyebrow': 'Opiniones de clientes',
+      'reviews.title': 'Con la confianza de cientos de clientes de Maryland',
+      'reviews.summary': 'Basado en más de <strong>416 opiniones de Google</strong>',
+      'faq.eyebrow': 'Preguntas frecuentes',
+      'faq.title': 'Estamos aquí para ayudar',
+      'faq.lede': 'Respuestas a algunas de las preguntas que más recibimos.',
+      'faq.q1': '¿Ofrecen consultas?',
+      'faq.a1': 'Sí. Llame a nuestra oficina para programar una cita con un abogado.',
+      'faq.q2': '¿Hablan español?',
+      'faq.a2': 'Sí. Con gusto asistimos a clientes que hablan inglés y español.',
+      'faq.q3': '¿Cómo puedo enviar mis documentos legales?',
+      'faq.a3': 'Los clientes existentes pueden subir documentos a través del portal seguro del cliente o traerlos a nuestra oficina.',
+      'contact.eyebrow': 'Contacto',
+      'contact.title': 'Programar una consulta',
+      'contact.lede': 'Ya sea que enfrente un problema legal o simplemente tenga preguntas, nuestra oficina está aquí para ayudar.',
+      'contact.address-title': '📍 Dirección de la oficina',
+      'contact.phone-title': '📞 Teléfono',
+      'contact.hours-title': '🕒 Horario de oficina',
+      'contact.form-name': 'Nombre',
+      'contact.form-phone': 'Teléfono',
+      'contact.form-email': 'Correo electrónico',
+      'contact.form-language': 'Idioma preferido',
+      'contact.form-matter': 'Asunto legal',
+      'contact.form-message': 'Mensaje',
+      'contact.form-submit': 'Solicitar consulta',
+      'footer.practice-title': 'Áreas de práctica',
+      'footer.office-title': 'Oficina',
+      'footer.links-title': 'Enlaces rápidos',
+      'footer.intro': 'Brindamos representación legal de confianza a las familias de Maryland con honestidad, profesionalismo y compasión.',
+      'footer.practice-family': 'Derecho de familia',
+      'footer.practice-criminal': 'Defensa penal',
+      'footer.practice-estate': 'Planificación patrimonial',
+      'footer.practice-business': 'Derecho empresarial',
+      'footer.address-line1': '7 Central Ave Suite A',
+      'footer.address-line2': 'Glen Burnie, MD',
+      'footer.phone': '(410) 590-2552',
+      'footer.link-about': 'Sobre nosotros',
+      'footer.link-practice': 'Áreas de práctica',
+      'footer.link-portal': 'Portal del cliente',
+      'footer.link-contact': 'Contacto',
+      'footer.copyright': '© 2026 Law Office of Richard C. Bittner. Todos los derechos reservados.',
+      'footer.disclaimer': 'Publicidad de abogados • Los resultados previos no garantizan un resultado similar.',
+      'hours.monday': 'Lunes',
+      'hours.monday-hours': '9:00 a. m. – 5:00 p. m.',
+      'hours.tuesday': 'Martes',
+      'hours.tuesday-hours': '9:00 a. m. – 5:00 p. m.',
+      'hours.wednesday': 'Miércoles',
+      'hours.wednesday-hours': '9:00 a. m. – 5:00 p. m.',
+      'hours.thursday': 'Jueves',
+      'hours.thursday-hours': '9:00 a. m. – 5:00 p. m.',
+      'hours.friday': 'Viernes',
+      'hours.friday-hours': '9:00 a. m. – 4:00 p. m.',
+      'hours.saturday': 'Sábado',
+      'hours.saturday-hours': 'Cerrado',
+      'hours.sunday': 'Domingo',
+      'hours.sunday-hours': 'Cerrado',
+      'form.option-english': 'English',
+      'form.option-spanish': 'Español',
+      'brand.name': 'Richard C. Bittner',
+      'brand.title': 'Abogado de ley'
+    }
+  };
+
+  const setLanguage = (lang) => {
+    const langData = translations[lang] || translations.en;
+    document.documentElement.setAttribute('data-page-lang', lang);
+    document.querySelectorAll('[data-i18n-key]').forEach((element) => {
+      const key = element.getAttribute('data-i18n-key');
+      const value = langData[key];
+      if (value) {
+        element.innerHTML = value;
+      }
+    });
+
+    document.querySelectorAll('.lang-btn').forEach((button) => {
+      const isActive = button.getAttribute('data-lang') === lang;
+      button.setAttribute('aria-pressed', String(isActive));
+      button.style.fontWeight = isActive ? '700' : '600';
+    });
+  };
+
+  document.querySelectorAll('.lang-btn').forEach((button) => {
+    button.addEventListener('click', () => {
+      setLanguage(button.getAttribute('data-lang'));
+    });
+  });
+
+  setLanguage('en');
+
+  document.querySelectorAll('.accordion-trigger').forEach((button) => {
+    button.addEventListener('click', () => {
+      const expanded = button.getAttribute('aria-expanded') === 'true';
+      button.setAttribute('aria-expanded', String(!expanded));
+      const panel = button.nextElementSibling;
+      if (panel) {
+        panel.hidden = expanded;
+      }
+    });
+  });
+});
